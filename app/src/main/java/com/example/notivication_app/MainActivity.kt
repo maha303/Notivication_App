@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.EditText
 import com.example.notivication_app.databinding.ActivityMainBinding
@@ -28,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         val b =ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-    //    edMessage=findViewById(R.id.edMessage)
-     //   val m =edMessage.text.toString()
-
-     //   btnAdd=findViewById(R.id.btnAdd)
 
         b.btnAdd.setOnClickListener {
 
@@ -59,7 +56,15 @@ class MainActivity : AppCompatActivity() {
                     .setContentText(b.edMessage.text)
             }
 
-            notificationManager. notify(1234, builder.build())
+          //  notificationManager. notify(1234, builder.build())
+            val countDownTimer = object : CountDownTimer(5000,500) {
+                override fun onTick(p0: Long) {
+                }
+                override fun onFinish() {
+                    notificationManager.notify(1234,builder.build())
+               }
+            }
+            countDownTimer.start()
 
         }
     }
